@@ -1,2 +1,5 @@
-'use client';import { useEffect,useState } from 'react';import { PackageCheck } from 'lucide-react';import { Card } from '@/components/ui/card';import { Button } from '@/components/ui/button';import { CourierService } from '@/services/CourierService';import { peso } from '@/lib/utils';import type { CourierJob } from '@/types';
-export default function Courier(){const [jobs,setJobs]=useState<CourierJob[]>([]);const [created,setCreated]=useState<string>();useEffect(()=>{CourierService.list().then(setJobs)},[]);return <div className="grid gap-6 lg:grid-cols-2"><Card><PackageCheck className="size-9 text-green-600"/><h1 className="mt-3 text-3xl font-black">Courier booking</h1><p className="mt-2 text-slate-600">Simulate barangay-to-barangay parcel dispatch with ETA and tracking.</p><Button className="mt-5" onClick={async()=>{const r=await CourierService.create();setCreated(`${r.trackingCode} · ETA ${r.eta} · ${peso(r.fee)}`)}}>Create courier request</Button>{created&&<p className="mt-4 rounded-2xl bg-green-50 p-4 font-semibold">{created}</p>}</Card><Card><h2 className="font-bold">Active courier jobs</h2>{jobs.length===0?<p>Loading jobs...</p>:jobs.map(j=><article key={j.id} className="mt-4 rounded-2xl border p-4"><p className="font-semibold">{j.item}</p><p className="text-sm text-slate-600">{j.pickup} → {j.dropoff} · {peso(j.fee)} · {j.status}</p></article>)}</Card></div>}
+import { CourierPage } from '@/features/courier/components/CourierPage';
+
+export default function Page() {
+  return <CourierPage />;
+}

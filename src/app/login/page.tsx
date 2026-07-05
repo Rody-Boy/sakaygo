@@ -1,3 +1,5 @@
-'use client';import type { ComponentType } from 'react';import { useRouter } from 'next/navigation';import { Car,ShieldCheck,UserRound } from 'lucide-react';import { Button } from '@/components/ui/button';import { Card } from '@/components/ui/card';import { AuthService } from '@/services/AuthService';import { useAuthStore } from '@/hooks/useAuthStore';import type { Role } from '@/types';
-const roles:[Role,string,ComponentType<{className?:string}>][]=[['rider','Continue as Rider',UserRound],['driver','Continue as Driver',Car],['admin','Continue as Admin',ShieldCheck]];
-export default function Login(){const router=useRouter();const setSession=useAuthStore(s=>s.setSession);async function choose(role:Role){const user=await AuthService.continueAs(role);setSession(user);router.push(role==='admin'?'/admin':`/${role}`)}return <Card className="mx-auto max-w-xl"><h1 className="text-3xl font-black">Choose demo role</h1><p className="mt-2 text-slate-600">Authentication is mocked and persisted locally for a production-like flow.</p><div className="mt-6 grid gap-3">{roles.map(([role,label,Icon])=><Button key={role} onClick={()=>choose(role)} className="justify-start bg-slate-900 hover:bg-slate-800"><Icon className="mr-2 size-5"/>{label}</Button>)}</div></Card>}
+import { LoginPage } from '@/features/auth/components/LoginPage';
+
+export default function Page() {
+  return <LoginPage />;
+}

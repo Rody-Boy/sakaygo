@@ -1,0 +1,45 @@
+import Link from 'next/link';
+import { ArrowRight, Bike, PackageCheck, ShieldCheck } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { MapView } from '@/components/maps/MapView';
+
+const capabilities = [
+  { icon: Bike, title: 'Ride booking', body: 'Multi-step matching, fare quotes, and realistic trip progress.' },
+  { icon: PackageCheck, title: 'Courier', body: 'Parcel pricing, ETA, tracking codes, and active job monitoring.' },
+  { icon: ShieldCheck, title: 'Admin', body: 'Fleet health, courier SLA, revenue, feedback, and city operations.' },
+];
+
+export function HomePage() {
+  return (
+    <div className="grid gap-8 lg:grid-cols-[1.1fr_.9fr]">
+      <section className="py-8">
+        <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">Kabankalan City MVP</span>
+        <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Smarter Tricycle Booking & Courier Services</h1>
+        <p className="mt-5 max-w-2xl text-lg text-slate-600">
+          SakayGo simulates reliable tricycle rides, barangay-aware pickup points, courier dispatch, payments, feedback, and operations analytics using mock services ready for backend migration.
+        </p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Link href="/login">
+            <Button>
+              Start demo <ArrowRight className="ml-2 size-4" aria-hidden="true" />
+            </Button>
+          </Link>
+          <Link href="/admin" className="rounded-xl border px-4 py-2.5 font-semibold">
+            View operations
+          </Link>
+        </div>
+      </section>
+      <MapView label="SakayGo Kabankalan coverage map" />
+      <div className="grid gap-4 sm:grid-cols-3 lg:col-span-2">
+        {capabilities.map(({ icon: Icon, title, body }) => (
+          <Card key={title}>
+            <Icon className="size-7 text-green-600" aria-hidden="true" />
+            <h2 className="mt-3 font-bold">{title}</h2>
+            <p className="mt-1 text-sm text-slate-600">{body}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
