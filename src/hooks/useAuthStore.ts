@@ -1,0 +1,3 @@
+'use client';import { create } from 'zustand';import type { Role,User } from '@/types';
+interface AuthState{role:Role|null;user:User|null;setSession:(user:User)=>void;hydrate:()=>void;logout:()=>void}
+export const useAuthStore=create<AuthState>((set)=>({role:null,user:null,setSession:(user)=>{localStorage.setItem('sakaygo-role',user.role);localStorage.setItem('sakaygo-user',JSON.stringify(user));set({role:user.role,user});},hydrate:()=>{const raw=localStorage.getItem('sakaygo-user');if(raw){const user=JSON.parse(raw) as User;set({user,role:user.role});}},logout:()=>{localStorage.removeItem('sakaygo-role');localStorage.removeItem('sakaygo-user');set({role:null,user:null});}}));
