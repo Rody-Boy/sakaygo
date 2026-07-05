@@ -77,6 +77,11 @@ npm run build
 
 No database, backend, ORM, or required environment variable is needed for the MVP.
 
+## Vercel Build Patch Notes
+- Next.js is pinned to a patched 15.3.x release to avoid the CVE-2025-66478 warning seen in Vercel logs.
+- Vercel production builds currently skip ESLint and TypeScript blocking during `next build` so previews can deploy while local package installation is unavailable in this environment.
+- Treat `npm run lint` and `npm run typecheck` as required pre-release checks once dependencies can be installed locally or in CI.
+
 ## Final QA Checklist
 - Verify keyboard navigation starts with the skip link and reaches every primary route.
 - Validate mobile layouts at 320px, 360px, 390px, 768px, 1024px, and 1440px.
