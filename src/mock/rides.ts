@@ -1,0 +1,2 @@
+import type { Ride } from '@/types';
+export const rides: Ride[]=[{id:'r1',riderName:'Ma. Isabel Gonzales',driverId:'d1',pickup:'Kabankalan Public Plaza',dropoff:'CPSU Main Gate',distanceKm:4.8,fare:84,status:'completed',requestedAt:'2026-07-04T08:30:00Z'},{id:'r2',riderName:'Paolo Teves',driverId:'d2',pickup:'Gaisano Kabankalan Entrance',dropoff:'City Hospital',distanceKm:2.6,fare:58,status:'in_progress',requestedAt:'2026-07-05T02:20:00Z'}];
